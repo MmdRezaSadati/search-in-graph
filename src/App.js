@@ -24,6 +24,10 @@ function App({ graph }) {
 
       const destinations = graph[currentNode];
 
+      if (!destinations) {
+        console.log(`nothing found!`);
+        clearInterval(interval);
+      }
       for (const destination of destinations) {
         if (!visited.has(destination)) {
           visited.add(destination);
