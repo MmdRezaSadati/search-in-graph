@@ -27,11 +27,13 @@ function App({ graph }) {
       if (!destinations) {
         console.log(`nothing found!`);
         clearInterval(interval);
-      }
-      for (const destination of destinations) {
-        if (!visited.has(destination)) {
-          visited.add(destination);
-          stack.push(destination);
+        return;
+      } else {
+        for (const destination of destinations) {
+          if (!visited.has(destination)) {
+            visited.add(destination);
+            stack.push(destination);
+          }
         }
       }
     }, 500);
@@ -56,10 +58,16 @@ function App({ graph }) {
 
       const destinations = graph[currentNode];
 
-      for (const destination of destinations) {
-        if (!visited.has(destination)) {
-          visited.add(destination);
-          queue.push(destination);
+      if (!destinations) {
+        console.log(`nothing found!`);
+        clearInterval(interval);
+        return;
+      } else {
+        for (const destination of destinations) {
+          if (!visited.has(destination)) {
+            visited.add(destination);
+            queue.push(destination);
+          }
         }
       }
     }, 500);
